@@ -1,20 +1,20 @@
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import type { LoginUserDto } from "../../interfaces/users/login-user.dto.ts";
-import { requestAuthentification } from "../../services/authentification.service.ts";
+import { requestLogin } from "../../services/authentification.service.ts";
 
 /**
- * @function useAuthentification
+ * @function useLogin
  * @author Arthur MATHIS <mathis.arthur.dev@gmail.com>
  */
-export const useAuthentification = () => {
+export const useLogin = () => {
     const navigate = useNavigate();
 
     return useMutation({
-        mutationFn: (credentials: LoginUserDto) => requestAuthentification(credentials),
+        mutationFn: (credentials: LoginUserDto) => requestLogin(credentials),
         onSuccess: () => {
             alert("✅Authentification réussie");
-            navigate('/dashboard');
+            navigate('/dashboard/me');
         },
         onError: (error: never) => {
             console.error("Erreur d'authentification :", error);

@@ -23,8 +23,8 @@ public class LoginController {
     private final UserService userService;
     private final JwtProvider jwtProvider;
 
-    @PostMapping(consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> authenticate(@RequestBody LoginUserDTO loginUserDTO) {
+    @PostMapping(path = "/login", consumes = APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> login(@RequestBody LoginUserDTO loginUserDTO) {
         AuthToken authToken = this.userService.authenticate(loginUserDTO);
 
         ResponseCookie jwtCookie = ResponseCookie.from("access_token", authToken.token())
@@ -38,8 +38,21 @@ public class LoginController {
         return ResponseEntity.ok()
                 .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
                 .build();
+    }
 
-        // return this.userService.authenticate(loginUserDTO);
+    @PostMapping(path = "/logout")
+    public ResponseEntity<?> logout() {
+        ResponseCookie jwtCookie = ResponseCookie.from("access_token", "")
+                .httpOnly(true)
+                .secure(false)
+                .path("/")
+                .maxAge(0)
+                .sameSite("Strict")
+                .build();
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
+                .build();
     }
 
 }

@@ -1,6 +1,6 @@
-import type {LoginUserDto} from "../infrastructure/interfaces/users/login-user.dto.ts";
-import {useForm} from "react-hook-form";
-import {useAuthentification} from "../infrastructure/hooks/authentification/use-authentification.ts";
+import type { LoginUserDto } from "../../infrastructure/interfaces/users/login-user.dto.ts";
+import { useForm } from "react-hook-form";
+import { useLogin } from "../../infrastructure/hooks/authentification/use-login.ts";
 
 /**
  * @function Login
@@ -9,7 +9,7 @@ import {useAuthentification} from "../infrastructure/hooks/authentification/use-
 function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm<LoginUserDto>();
 
-    const { mutate, isPending } = useAuthentification();
+    const { mutate, isPending } = useLogin();
 
     const onSubmit = (data: LoginUserDto) => {
         mutate(data);
