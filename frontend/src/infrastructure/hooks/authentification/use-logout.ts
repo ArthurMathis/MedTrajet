@@ -14,7 +14,6 @@ export const useLogout = () => {
         mutationFn: ( ) => requestLogout(),
         onSuccess: () => {
             queryClient.clear();
-            alert("✅Déconnexion réussie");
             navigate('/auth');
         },
         onError: (error: never) => {

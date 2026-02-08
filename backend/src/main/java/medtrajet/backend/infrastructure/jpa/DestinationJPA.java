@@ -7,26 +7,20 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
-@Entity(name = "users")
+@Entity(name = "destinations")
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserJPA {
+public class DestinationJPA {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String email;
-
-    @Column(nullable = false)
-    private String password;
-
-    @Column(nullable = false)
-    private Boolean isAdmin;
+    private String name;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)

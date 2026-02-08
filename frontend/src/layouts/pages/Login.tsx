@@ -18,15 +18,15 @@ function Login() {
     return (
         <div className="hero bg-base-100 min-h-screen min-w-screen">
             <div className="hero-content flex-col w-full">
-                <div className="text-center lg:text-left">
+                <div className="text-center">
                     <h1 className="text-5xl font-bold">MedTrajet</h1>
                     <p className="py-6">
                         Connecte-toi pour accéder à l'application.
                     </p>
                 </div>
-                <div className="card bg-base-100 w-full max-w-sm lg:max-w-xl shrink-0 shadow-2xl">
+                <div className="w-full lg:card lg:bg-base-100 max-w-sm lg:max-w-xl lg:shrink-0 lg:shadow-2xl">
                     <form
-                        className="card-body"
+                        className="lg:card-body"
                         onSubmit={handleSubmit(onSubmit)}
                     >
                         <fieldset className="fieldset">

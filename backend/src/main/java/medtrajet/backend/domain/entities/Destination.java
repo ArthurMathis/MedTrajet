@@ -9,12 +9,10 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Builder
-public class User {
+public class Destination {
 
     private Long id;
-    private String email;
-    private String password;
-    private Boolean isAdmin;
+    private String name;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 

@@ -2,6 +2,9 @@ package medtrajet.backend.infrastructure.gateways.users.authenticate;
 
 import medtrajet.backend.domain.entities.User;
 
+/**
+ * @interface AuthenticateUserGateway
+ */
 public interface AuthenticateUserGateway {
 
     /**

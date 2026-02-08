@@ -13,7 +13,6 @@ export const useLogin = () => {
     return useMutation({
         mutationFn: (credentials: LoginUserDto) => requestLogin(credentials),
         onSuccess: () => {
-            alert("✅Authentification réussie");
             navigate('/dashboard/me');
         },
         onError: (error: never) => {
