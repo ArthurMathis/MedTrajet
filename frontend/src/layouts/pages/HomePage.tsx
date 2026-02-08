@@ -1,7 +1,7 @@
 import CurrentWayAlert from "../ui/CurrentWayAlert.tsx";
 import Dock from "../ui/Dock.tsx";
 import Header from "../ui/Header.tsx";
-import WayForm from "../ui/WayForm.tsx";
+import WayForm from "../ui/Form/WayForm.tsx";
 
 /**
  * @function HomePage

@@ -4,6 +4,8 @@ import medtrajet.backend.domain.repositories.DestinationRepository;
 import medtrajet.backend.domain.repositories.UserRepository;
 import medtrajet.backend.infrastructure.converters.destinations.DestinationConverter;
 import medtrajet.backend.infrastructure.converters.users.UserConverter;
+import medtrajet.backend.infrastructure.gateways.destinations.create.CreateDestinationGateway;
+import medtrajet.backend.infrastructure.gateways.destinations.create.CreateDestinationGatewayImpl;
 import medtrajet.backend.infrastructure.gateways.destinations.index.IndexDestinationGateway;
 import medtrajet.backend.infrastructure.gateways.destinations.index.IndexDestinationGatewayImpl;
 import medtrajet.backend.infrastructure.gateways.users.authenticate.AuthenticateUserGateway;
@@ -26,6 +28,9 @@ public class GatewayConfig {
         return new IndexDestinationGatewayImpl(destinationRepository, destinationConverter);
     }
 
-    // todo : create destination
+    @Bean
+    public CreateDestinationGateway createDestinationGateway(DestinationRepository destinationRepository, DestinationConverter destinationConverter) {
+        return new CreateDestinationGatewayImpl(destinationRepository, destinationConverter);
+    }
 
 }

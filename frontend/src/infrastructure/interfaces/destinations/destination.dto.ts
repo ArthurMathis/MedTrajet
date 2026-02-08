@@ -1,5 +1,5 @@
 /**
- * @interface LoginUserDto
+ * @interface DestinationDto
  * @author Arthur MATHIS <mathis.arthur.dev@gmail.com>
  */
 export interface DestinationDto {

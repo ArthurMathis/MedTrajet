@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import type { LoginUserDto } from "../../interfaces/users/login-user.dto.ts";
 import { requestLogin } from "../../services/authentification.service.ts";
+import toast from "react-hot-toast";
 
 /**
  * @function useLogin
@@ -13,11 +14,12 @@ export const useLogin = () => {
     return useMutation({
         mutationFn: (credentials: LoginUserDto) => requestLogin(credentials),
         onSuccess: () => {
+            toast.success("Connexion réussie !");
             navigate('/dashboard/me');
         },
         onError: (error: never) => {
             console.error("Erreur d'authentification :", error);
-            alert("❌Identifiants incorrects");
+            toast.error("Identifiants incorrects");
         }
     });
 };

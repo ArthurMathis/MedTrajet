@@ -1,6 +1,7 @@
-import { useIndexDestinations } from "../../infrastructure/hooks/destinations/use-index-destinations.ts";
+import { useIndexDestinations } from "../../../infrastructure/hooks/destinations/use-index-destinations.ts";
 import { useState } from "react";
-import type {DestinationDto} from "../../infrastructure/interfaces/destinations/destination.dto.ts"; // todo : remplace by useForm
+import type {DestinationDto} from "../../../infrastructure/interfaces/destinations/destination.dto.ts";
+import {useNavigate} from "react-router-dom"; // todo : remplace by useForm
 
 // todo: add new destination
 
@@ -9,10 +10,11 @@ import type {DestinationDto} from "../../infrastructure/interfaces/destinations/
  * @author Arthur MATHIS <mathis.arthur.dev@gmail.com>
  */
 const WayForm = () => {
+    const navigate = useNavigate();
+
     const { data: destinations, isLoading } = useIndexDestinations();
 
     const [destination, setDestination] = useState("");
-
 
     return (
         <div className="hero bg-base-100 w-full lg:flex-1 lg:mb-6">
@@ -40,7 +42,9 @@ const WayForm = () => {
                                 onChange={(e) => setDestination(e.target.value)}
                                 disabled={isLoading}
                             />
-                            <div><a className="link link-hover">Saisir un nouvelle destination</a></div>
+                            <span onClick={() => { navigate("/destinations/form") }}>
+                                <p className="link link-hover">Saisir un nouvelle destination</p>
+                            </span>
                             <datalist id="destinations-list">
                                 {destinations?.map((dest: DestinationDto) => (
                                     <option key={dest.id} value={dest.name} />
