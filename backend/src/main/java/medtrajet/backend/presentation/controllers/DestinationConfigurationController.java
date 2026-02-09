@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import medtrajet.backend.application.services.DestinationService;
 import medtrajet.backend.presentation.dtos.destinations.CreateDestinationDTO;
 import medtrajet.backend.presentation.dtos.destinations.DestinationDTO;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class DestinationConfigurationController {
         return this.destinationService.index();
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public Long create(@RequestBody CreateDestinationDTO createDestinationDTO) {
         return this.destinationService.create(createDestinationDTO);

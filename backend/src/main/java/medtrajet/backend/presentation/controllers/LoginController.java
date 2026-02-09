@@ -5,13 +5,13 @@ import medtrajet.backend.application.services.UserService;
 import medtrajet.backend.infrastructure.security.jwt.JwtProvider;
 import medtrajet.backend.presentation.dtos.authentifications.AuthToken;
 import medtrajet.backend.presentation.dtos.users.LoginUserDTO;
+import medtrajet.backend.presentation.dtos.users.UserDTO;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
@@ -22,6 +22,30 @@ public class LoginController {
 
     private final UserService userService;
     private final JwtProvider jwtProvider;
+
+    @GetMapping(path = "/me")
+    public ResponseEntity<Object> getConnectedUser(Authentication authentication) {
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        try {
+            Object principal = authentication.getPrincipal();
+            Long userId;
+
+            if (principal instanceof Integer) {
+                userId = ((Integer) principal).longValue();
+            } else {
+                userId = (Long) principal;
+            }
+
+            UserDTO user = this.userService.get(userId);
+            return ResponseEntity.ok(user);
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
 
     @PostMapping(path = "/login", consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> login(@RequestBody LoginUserDTO loginUserDTO) {

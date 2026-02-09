@@ -8,7 +8,7 @@ import medtrajet.backend.domain.entities.User;
 public interface AuthenticateUserGateway {
 
     /**
-     * Public method that a user from his email
+     * Public method that gets a user from his email
      *
      * @param email The searched email
      * @return The user

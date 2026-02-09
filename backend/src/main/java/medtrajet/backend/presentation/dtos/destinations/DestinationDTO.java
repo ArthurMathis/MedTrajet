@@ -5,5 +5,5 @@ import lombok.Builder;
 import java.time.LocalDateTime;
 
 @Builder
-public record DestinationDTO(Long id, String name, LocalDateTime createdAt, LocalDateTime updatedAt) {
+public record DestinationDTO(long id, String name, LocalDateTime createdAt, LocalDateTime updatedAt) {
 }

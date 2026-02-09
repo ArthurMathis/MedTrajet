@@ -16,6 +16,7 @@ public class DestinationService {
 
     private final IndexDestinationUseCase indexDestinationUseCase;
     private final CreateDestinationUseCase createDestinationUseCase;
+
     private final DestinationDtoConverter destinationDtoConverter;
 
     public List<DestinationDTO> index() {
