@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import medtrajet.backend.presentation.dtos.authentifications.AuthToken;
 import medtrajet.backend.presentation.dtos.authentifications.TokenUserData;
 import medtrajet.backend.presentation.dtos.users.LoginUserDTO;
-import medtrajet.backend.application.exceptions.InvalidAuthentificationException;
+import medtrajet.backend.application.exceptions.authentifications.InvalidAuthentificationException;
 import medtrajet.backend.domain.entities.User;
 import medtrajet.backend.infrastructure.gateways.users.authenticate.AuthenticateUserGateway;
 import medtrajet.backend.infrastructure.security.jwt.JwtProvider;

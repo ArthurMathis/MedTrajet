@@ -2,6 +2,7 @@ package medtrajet.backend.presentation.controllers;
 
 import lombok.AllArgsConstructor;
 import medtrajet.backend.application.services.TripService;
+import medtrajet.backend.presentation.dtos.trips.EndTripDTO;
 import medtrajet.backend.presentation.dtos.trips.StartTripDTO;
 import medtrajet.backend.presentation.dtos.trips.TripDTO;
 import org.springframework.security.access.AccessDeniedException;
@@ -33,6 +34,9 @@ public class TripController {
         this.tripService.start(tripDTO);
     }
 
-    // todo: end
+    @PutMapping()
+    public void end(@RequestBody EndTripDTO tripDTO) {
+        this.tripService.end(tripDTO);
+    }
 
 }

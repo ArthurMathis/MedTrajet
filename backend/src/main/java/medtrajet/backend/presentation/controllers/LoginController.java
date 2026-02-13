@@ -1,7 +1,7 @@
 package medtrajet.backend.presentation.controllers;
 
 import lombok.AllArgsConstructor;
-import medtrajet.backend.application.exceptions.InvalidAuthentificationException;
+import medtrajet.backend.application.exceptions.authentifications.InvalidAuthentificationException;
 import medtrajet.backend.application.services.UserService;
 import medtrajet.backend.infrastructure.security.jwt.JwtProvider;
 import medtrajet.backend.presentation.dtos.authentifications.AuthToken;

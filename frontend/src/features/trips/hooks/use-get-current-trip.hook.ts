@@ -8,7 +8,7 @@ import {TripService} from "../api/trips.service.ts";
  */
 export const useGetCurrentTripHook = () => {
     return useQuery({
-        queryKey: [ "current-trip" ],
+        queryKey: [ 'current-trip' ],
         queryFn: async (): Promise<TripDto|null> => {
             const { data } = await TripService.requestCurrentTrip();
             return data;

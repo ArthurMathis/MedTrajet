@@ -1,4 +1,4 @@
-package medtrajet.backend.application.exceptions;
+package medtrajet.backend.application.exceptions.authentifications;
 
 public class InvalidAuthentificationException extends RuntimeException {
 

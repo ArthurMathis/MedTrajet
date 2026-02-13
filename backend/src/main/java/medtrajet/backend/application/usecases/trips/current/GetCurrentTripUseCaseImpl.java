@@ -12,9 +12,7 @@ public class GetCurrentTripUseCaseImpl implements GetCurrentTripUseCase {
 
     @Override
     public Trip execute(Long userId) {
-        return this.getCurrentTripGateway.get(userId).orElseThrow(() -> {
-            return new EntityNotFoundException("Trip not found");
-        });
+        return this.getCurrentTripGateway.get(userId).orElse(null);
     }
 
 }

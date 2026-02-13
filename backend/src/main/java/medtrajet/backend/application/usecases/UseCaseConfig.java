@@ -8,6 +8,8 @@ import medtrajet.backend.application.usecases.destinations.index.IndexDestinatio
 import medtrajet.backend.application.usecases.destinations.index.IndexDestinationUseCaseImpl;
 import medtrajet.backend.application.usecases.trips.current.GetCurrentTripUseCase;
 import medtrajet.backend.application.usecases.trips.current.GetCurrentTripUseCaseImpl;
+import medtrajet.backend.application.usecases.trips.end.EndTripUseCase;
+import medtrajet.backend.application.usecases.trips.end.EndTripUseCaseImpl;
 import medtrajet.backend.application.usecases.trips.start.StartTripUseCase;
 import medtrajet.backend.application.usecases.trips.start.StartTripUseCaseImpl;
 import medtrajet.backend.application.usecases.users.authenticate.AuthenticateUserUseCase;
@@ -18,11 +20,14 @@ import medtrajet.backend.infrastructure.gateways.destinations.create.CreateDesti
 import medtrajet.backend.infrastructure.gateways.destinations.get.GetDestinationGateway;
 import medtrajet.backend.infrastructure.gateways.destinations.index.IndexDestinationGateway;
 import medtrajet.backend.infrastructure.gateways.trips.current.GetCurrentTripGateway;
+import medtrajet.backend.infrastructure.gateways.trips.end.EndTripGateway;
+import medtrajet.backend.infrastructure.gateways.trips.get.GetTrip;
 import medtrajet.backend.infrastructure.gateways.trips.start.StartTripGateway;
 import medtrajet.backend.infrastructure.gateways.users.authenticate.AuthenticateUserGateway;
 import medtrajet.backend.infrastructure.gateways.users.get.GetUserGateway;
 import medtrajet.backend.infrastructure.security.jwt.JwtProvider;
 import medtrajet.backend.presentation.converters.destinations.create.CreateDestinationDtoConverter;
+import medtrajet.backend.presentation.converters.trips.end.EndTripDtoConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -66,5 +71,10 @@ public class UseCaseConfig {
     @Bean
     public StartTripUseCase startTripUseCase(GetCurrentTripGateway getCurrentTripGateway, StartTripGateway startTripGateway) {
         return new StartTripUseCaseImpl(getCurrentTripGateway, startTripGateway);
+    }
+
+    @Bean
+    public EndTripUseCase endTripUseCase(EndTripGateway endTripGateway, EndTripDtoConverter endTripDtoConverter, GetTrip getTrip) {
+        return new EndTripUseCaseImpl(endTripGateway, endTripDtoConverter, getTrip);
     }
 }

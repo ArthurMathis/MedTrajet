@@ -14,6 +14,10 @@ import medtrajet.backend.infrastructure.gateways.destinations.index.IndexDestina
 import medtrajet.backend.infrastructure.gateways.destinations.index.IndexDestinationGatewayImpl;
 import medtrajet.backend.infrastructure.gateways.trips.current.GetCurrentTripGateway;
 import medtrajet.backend.infrastructure.gateways.trips.current.GetCurrentTripGatewayImpl;
+import medtrajet.backend.infrastructure.gateways.trips.end.EndTripGateway;
+import medtrajet.backend.infrastructure.gateways.trips.end.EndTripGatewayImpl;
+import medtrajet.backend.infrastructure.gateways.trips.get.GetTrip;
+import medtrajet.backend.infrastructure.gateways.trips.get.GetTripImpl;
 import medtrajet.backend.infrastructure.gateways.trips.start.StartTripGateway;
 import medtrajet.backend.infrastructure.gateways.trips.start.StartTripGatewayImpl;
 import medtrajet.backend.infrastructure.gateways.users.authenticate.AuthenticateUserGateway;
@@ -55,6 +59,11 @@ public class GatewayConfig {
 
     // * TRIP * //
     @Bean
+    public GetTrip getTrip(TripRepository tripRepository, TripConverter tripConverter) {
+        return new GetTripImpl(tripRepository, tripConverter);
+    }
+
+    @Bean
     public GetCurrentTripGateway getCurrentTripGateway(TripRepository tripRepository, TripConverter tripConverter) {
         return new GetCurrentTripGatewayImpl(tripRepository, tripConverter);
     }
@@ -62,6 +71,11 @@ public class GatewayConfig {
     @Bean
     public StartTripGateway startTripGateway(TripRepository tripRepository, TripConverter tripConverter) {
         return new StartTripGatewayImpl(tripRepository, tripConverter);
+    }
+
+    @Bean
+    public EndTripGateway endTripGateway(TripRepository tripRepository) {
+        return new EndTripGatewayImpl(tripRepository);
     }
 
 }

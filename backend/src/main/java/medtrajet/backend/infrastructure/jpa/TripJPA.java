@@ -37,7 +37,6 @@ public class TripJPA {
     @Column(name = "created_at", updatable = false)
     private LocalDateTime startedAt;
 
-    @UpdateTimestamp
     @Column(name = "ended_at")
     private LocalDateTime endedAt;
 

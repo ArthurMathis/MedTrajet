@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { Car, Loader2 } from "lucide-react";
+import type { DestinationDto } from "../../destinations/interfaces/destination.dto.ts";
+import type { StartTripDto } from "../interfaces/start-trip.dto.ts";
 import { useIndexDestinationsHook } from "../../destinations/hooks/use-index-destinations.hook.ts";
 import { useStartTripHook } from "../hooks/use-start-trip.hook.ts";
 import { useAuthContextHook } from "../../../providers/authentification/use-auth-context.hook.ts";
-import type { DestinationDto } from "../../destinations/interfaces/destination.dto.ts";
-import type { StartTripDto } from "../interfaces/start-trip.dto.ts";
-import {useGetCurrentTripHook} from "../hooks/use-get-current-trip.hook.ts";
+import { useGetCurrentTripHook } from "../hooks/use-get-current-trip.hook.ts";
 
 /**
  * @function StartTripForm
@@ -30,8 +30,6 @@ const StartTripForm = () => {
             destinationId: data.destinationId,
             startMileage: data.startMileage,
         };
-
-        console.log("Payload envoyé au serveur :", tripPayload);
 
         startTrip(tripPayload as StartTripDto, {
         });
@@ -59,8 +57,8 @@ const StartTripForm = () => {
 
 
                 <span onClick={() => { navigate("/destinations/form") }}>
-                                <p className="link link-hover">Saisir un nouvelle destination</p>
-                            </span>
+                    <p className="link link-hover">Saisir un nouvelle destination</p>
+                </span>
 
                 <label className="label mt-1">Kilométrage au départ</label>
                 <input
@@ -79,7 +77,7 @@ const StartTripForm = () => {
                 <button
                     type="submit"
                     className="btn btn-success mt-4"
-                    disabled={currentTrip != null}
+                    disabled={currentTrip == null}
                 >
                     {isPending ? <Loader2 className="animate-spin" /> : <Car size={20} />}
                     {isPending ? "Démarrage..." : "Commencer"}

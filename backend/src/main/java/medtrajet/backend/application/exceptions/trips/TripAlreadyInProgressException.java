@@ -1,4 +1,4 @@
-package medtrajet.backend.application.exceptions;
+package medtrajet.backend.application.exceptions.trips;
 
 public class TripAlreadyInProgressException extends RuntimeException {
 

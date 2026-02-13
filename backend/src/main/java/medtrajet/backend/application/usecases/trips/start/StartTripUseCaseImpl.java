@@ -1,8 +1,7 @@
 package medtrajet.backend.application.usecases.trips.start;
 
-import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
-import medtrajet.backend.application.exceptions.TripAlreadyInProgressException;
+import medtrajet.backend.application.exceptions.trips.TripAlreadyInProgressException;
 import medtrajet.backend.domain.entities.Trip;
 import medtrajet.backend.infrastructure.gateways.trips.current.GetCurrentTripGateway;
 import medtrajet.backend.infrastructure.gateways.trips.start.StartTripGateway;

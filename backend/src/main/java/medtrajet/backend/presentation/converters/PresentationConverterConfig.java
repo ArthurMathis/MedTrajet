@@ -6,6 +6,8 @@ import medtrajet.backend.presentation.converters.destinations.dto.DestinationDto
 import medtrajet.backend.presentation.converters.destinations.dto.DestinationDtoConverterImpl;
 import medtrajet.backend.presentation.converters.trips.dto.TripDtoConverter;
 import medtrajet.backend.presentation.converters.trips.dto.TripDtoConverterImpl;
+import medtrajet.backend.presentation.converters.trips.end.EndTripDtoConverter;
+import medtrajet.backend.presentation.converters.trips.end.EndTripDtoConverterImpl;
 import medtrajet.backend.presentation.converters.trips.start.StartTripDtoConverter;
 import medtrajet.backend.presentation.converters.trips.start.StartTripDtoConverterImpl;
 import medtrajet.backend.presentation.converters.users.dto.UserDtoConverter;
@@ -42,6 +44,11 @@ public class PresentationConverterConfig {
     @Bean
     public StartTripDtoConverter startTripDtoConverter() {
         return new StartTripDtoConverterImpl();
+    }
+
+    @Bean
+    public EndTripDtoConverter endTripDtoConverter() {
+        return new EndTripDtoConverterImpl();
     }
 
 }

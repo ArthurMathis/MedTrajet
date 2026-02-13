@@ -1,17 +1,17 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import type { AxiosError } from "axios";
-import type { StartTripDto } from "../interfaces/start-trip.dto.ts";
+import type { EndTripDto } from "../interfaces/end-trip.dto.ts";
 import { TripService } from "../api/trips.service.ts";
 
-export const useStartTripHook = (onSuccessCallback?: () => void) => {
+export const useEndTripHook = (onSuccessCallback?: () => void) => {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: (trip: StartTripDto) => TripService.startTrip(trip),
+        mutationFn: (trip: EndTripDto) => TripService.endTrip(trip),
         onSuccess: async () =>  {
             await queryClient.refetchQueries({ queryKey: [ 'current-trip' ] });
-            toast.success("Trajet démarré !");
+            toast.success("Trajet terminé !");
 
             onSuccessCallback?.();
         },

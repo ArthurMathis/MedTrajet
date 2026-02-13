@@ -2,8 +2,8 @@ package medtrajet.backend.presentation.apiResponse;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
-import medtrajet.backend.application.exceptions.InvalidAuthentificationException;
-import medtrajet.backend.application.exceptions.TripAlreadyInProgressException;
+import medtrajet.backend.application.exceptions.authentifications.InvalidAuthentificationException;
+import medtrajet.backend.application.exceptions.trips.TripAlreadyInProgressException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
