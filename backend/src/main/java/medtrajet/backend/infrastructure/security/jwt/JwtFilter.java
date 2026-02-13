@@ -63,29 +63,6 @@ public class JwtFilter extends OncePerRequestFilter {
             return;
         }
         filterChain.doFilter(httpServletRequest, httpServletResponse);
-
-        /*
-        final String authorizationHeader = httpServletRequest.getHeader("Authorization");
-        if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
-            filterChain.doFilter(httpServletRequest, httpServletResponse);
-            return;
-        }
-
-        final String token = authorizationHeader.substring(7);
-        try {
-            final TokenUserData tokenUserData = jwtProvider.extract(token);
-            if (tokenUserData != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                UsernamePasswordAuthenticationToken authToken =  new UsernamePasswordAuthenticationToken(tokenUserData.userId(), null, null);
-                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
-                SecurityContextHolder.getContext().setAuthentication(authToken);
-            }
-        } catch(ExpiredJwtException | InvalidJwtException jwtException) {
-            ApiError apiError = new ApiError(HttpStatus.UNAUTHORIZED, jwtException.getMessage(), httpServletRequest.getRequestURI());
-            ApiResponseUtils.jsonError(httpServletResponse, apiError);
-            return;
-        }
-        filterChain.doFilter(httpServletRequest, httpServletResponse);
-        */
     }
 
 }

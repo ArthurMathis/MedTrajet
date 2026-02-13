@@ -13,7 +13,7 @@ export const useCreateDestinationHook = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: (destination: CreateDestinationDto)=> DestinationService.requestCreateDestination(destination),
+        mutationFn: (destination: CreateDestinationDto)=> DestinationService.createDestination(destination),
         onSuccess: () => {
             toast.success("Destination enregistrée !");
             queryClient.invalidateQueries({ queryKey: [ "destinations" ] })

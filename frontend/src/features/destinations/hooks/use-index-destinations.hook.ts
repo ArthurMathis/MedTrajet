@@ -8,9 +8,9 @@ import { DestinationService } from "../api/destinations.service.ts";
  */
 export const useIndexDestinationsHook = () => {
     return useQuery({
-        queryKey: [ "destinations" ],
+        queryKey: [ "index-destinations" ],
         queryFn: async (): Promise<DestinationDto[]> => {
-            const { data } = await DestinationService.requestIndexDestinations();
+            const { data } = await DestinationService.indexDestinations();
             return data;
         },
     });

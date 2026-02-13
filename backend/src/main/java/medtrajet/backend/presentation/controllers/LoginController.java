@@ -1,13 +1,13 @@
 package medtrajet.backend.presentation.controllers;
 
 import lombok.AllArgsConstructor;
+import medtrajet.backend.application.exceptions.InvalidAuthentificationException;
 import medtrajet.backend.application.services.UserService;
 import medtrajet.backend.infrastructure.security.jwt.JwtProvider;
 import medtrajet.backend.presentation.dtos.authentifications.AuthToken;
 import medtrajet.backend.presentation.dtos.users.LoginUserDTO;
 import medtrajet.backend.presentation.dtos.users.UserDTO;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -24,27 +24,12 @@ public class LoginController {
     private final JwtProvider jwtProvider;
 
     @GetMapping(path = "/me")
-    public ResponseEntity<Object> getConnectedUser(Authentication authentication) {
-        if (authentication == null || !authentication.isAuthenticated()) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    public UserDTO getConnectedUser(Authentication authentication) {
+        Long userId = (Long) authentication.getPrincipal();
+        if(userId == null) {
+            throw new InvalidAuthentificationException("Access denied");
         }
-
-        try {
-            Object principal = authentication.getPrincipal();
-            Long userId;
-
-            if (principal instanceof Integer) {
-                userId = ((Integer) principal).longValue();
-            } else {
-                userId = (Long) principal;
-            }
-
-            UserDTO user = this.userService.get(userId);
-            return ResponseEntity.ok(user);
-
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
+        return this.userService.get(userId);
     }
 
     @PostMapping(path = "/login", consumes = APPLICATION_JSON_VALUE)

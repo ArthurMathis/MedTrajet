@@ -14,13 +14,18 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 @RestController
 @RequestMapping(path = "destinations")
 @AllArgsConstructor
-public class DestinationConfigurationController {
+public class DestinationController {
 
     private final DestinationService destinationService;
 
     @GetMapping()
     public List<DestinationDTO> index() {
         return this.destinationService.index();
+    }
+
+    @GetMapping(path = "{destinationId}")
+    public DestinationDTO get(@PathVariable Long destinationId) {
+        return this.destinationService.get(destinationId);
     }
 
     @ResponseStatus(HttpStatus.CREATED)

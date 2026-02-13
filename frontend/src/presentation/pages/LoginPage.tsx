@@ -1,4 +1,5 @@
 import LoginForm from "../../features/authentification/components/LoginForm.tsx";
+import FormCard from "../ui/FormCard.tsx";
 
 /**
  * @function LoginPage
@@ -12,11 +13,7 @@ const LoginPage = () => {
                     <h1 className="text-5xl font-bold">MedTrajet</h1>
                     <p className="py-6">Connecte-toi pour accéder à l'application.</p>
                 </div>
-                <div className="w-full lg:card lg:bg-base-100 max-w-sm lg:max-w-xl lg:shrink-0 lg:shadow-2xl">
-                    <div className="lg:card-body">
-                        <LoginForm />
-                    </div>
-                </div>
+                <FormCard children={<LoginForm />} />
             </div>
         </div>
     );

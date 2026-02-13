@@ -14,7 +14,10 @@ export default function LoginForm() {
     const onSubmit = (data: LoginUserDto) => mutate(data);
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form
+            className="lg:card-body"
+            onSubmit={handleSubmit(onSubmit)}
+        >
             <fieldset className="fieldset">
                 <label className="label">Email</label>
                 <input

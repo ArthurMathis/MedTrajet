@@ -4,6 +4,10 @@ import medtrajet.backend.presentation.converters.destinations.create.CreateDesti
 import medtrajet.backend.presentation.converters.destinations.create.CreateDestinationDtoConverterImpl;
 import medtrajet.backend.presentation.converters.destinations.dto.DestinationDtoConverter;
 import medtrajet.backend.presentation.converters.destinations.dto.DestinationDtoConverterImpl;
+import medtrajet.backend.presentation.converters.trips.dto.TripDtoConverter;
+import medtrajet.backend.presentation.converters.trips.dto.TripDtoConverterImpl;
+import medtrajet.backend.presentation.converters.trips.start.StartTripDtoConverter;
+import medtrajet.backend.presentation.converters.trips.start.StartTripDtoConverterImpl;
 import medtrajet.backend.presentation.converters.users.dto.UserDtoConverter;
 import medtrajet.backend.presentation.converters.users.dto.UserDtoConverterImpl;
 import org.springframework.context.annotation.Bean;
@@ -27,6 +31,17 @@ public class PresentationConverterConfig {
     @Bean
     public CreateDestinationDtoConverter createDestinationDtoConverter() {
         return new CreateDestinationDtoConverterImpl();
+    }
+
+    // * TRIP * //
+    @Bean
+    public TripDtoConverter tripDtoConverter() {
+        return new TripDtoConverterImpl();
+    }
+
+    @Bean
+    public StartTripDtoConverter startTripDtoConverter() {
+        return new StartTripDtoConverterImpl();
     }
 
 }

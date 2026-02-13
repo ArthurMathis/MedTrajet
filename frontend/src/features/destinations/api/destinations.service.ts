@@ -1,5 +1,8 @@
 import api from "../../../core/api.config.ts";
-import type {CreateDestinationDto} from "../interfaces/create-destination.dto.ts";
+import type { CreateDestinationDto } from "../interfaces/create-destination.dto.ts";
+import type { DestinationDto } from "../interfaces/destination.dto.ts";
+
+const basedUrl = "/destinations";
 
 /**
  * @const DestinationService
@@ -7,12 +10,16 @@ import type {CreateDestinationDto} from "../interfaces/create-destination.dto.ts
  */
 export const DestinationService = {
 
-    requestIndexDestinations: async () => {
-        return await api.get("/destinations");
+    indexDestinations: async () => {
+        return await api.get<DestinationDto[]>(basedUrl);
     },
 
-    requestCreateDestination: async (destination: CreateDestinationDto) => {
-        return await api.post("/destinations", destination);
+    getDestination: async (destinationId: number) => {
+        return await api.get<DestinationDto>(`${basedUrl}/${destinationId}`);
+    },
+
+    createDestination: async (destination: CreateDestinationDto) => {
+        return await api.post(basedUrl, destination);
     }
 
 } as const;

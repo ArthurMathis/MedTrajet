@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import toast from "react-hot-toast";
 import type { LoginUserDto } from "../interfaces/login-user.dto.ts";
 import { AuthentificationService } from "../api/authentification.service.ts";
-import type {AxiosError} from "axios";
+import type { AxiosError } from "axios";
 
 /**
  * @function useLoginHook
@@ -16,7 +16,7 @@ export const useLoginHook = () => {
     return useMutation({
         mutationFn: (credentials: LoginUserDto) => AuthentificationService.login(credentials),
         onSuccess: async () => {
-            await queryClient.invalidateQueries({ queryKey: ['auth-user'] });
+            await queryClient.refetchQueries({ queryKey: ['auth-me'] });
 
             toast.success("Connexion réussie !");
             navigate('/dashboard/me');

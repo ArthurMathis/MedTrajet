@@ -1,11 +1,11 @@
 /**
- * @function NotFound
+ * @function NotFoundPage
  * @author Arthur MATHIS <mathis.arthur.dev@gmail.com>
  */
-const NotFound = () => {
+const NotFoundPage = () => {
     return (
         <h1>Not found !! </h1>
     )
 }
 
-export default NotFound;
+export default NotFoundPage;
